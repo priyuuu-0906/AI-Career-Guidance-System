@@ -83,15 +83,30 @@ def prediction():
 
     skills = request.form['skills'].lower()
 
-    if "coding" in skills:
+    if "coding" in skills or "programming" in skills:
         career = "Software Developer"
         course = "B.Tech Computer Science"
-    elif "maths" in skills:
+
+    elif "maths" in skills or "statistics" in skills:
         career = "Data Analyst"
         course = "B.Sc Data Science"
-    elif "design" in skills:
+
+    elif "design" in skills or "drawing" in skills:
         career = "Graphic Designer"
         course = "B.Des"
+
+    elif "biology" in skills or "medical" in skills:
+        career = "Doctor"
+        course = "MBBS"
+
+    elif "business" in skills or "management" in skills:
+        career = "Business Manager"
+        course = "BBA / MBA"
+
+    elif "teaching" in skills or "education" in skills:
+        career = "Teacher"
+        course = "B.Ed"
+
     else:
         career = "Career Not Found"
         course = "Explore more skills"
