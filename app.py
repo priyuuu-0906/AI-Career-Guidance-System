@@ -68,7 +68,15 @@ def submit_test():
     if request.form['q3'] == "c":
         score += 1
 
-    return render_template("result.html", score=score)
+    if score >= 3:
+        career = "Software Developer / AI Engineer"
+    elif score == 2:
+        career = "Data Analyst"
+    else:
+        career = "Graphic Designer"
+
+    return render_template("result.html", score=score, career=career)
+
 
 @app.route('/prediction', methods=['POST'])
 def prediction():
@@ -88,8 +96,7 @@ def prediction():
         career = "Career Not Found"
         course = "Explore more skills"
 
-    return render_template("courses.html",career=career,course=course)
-
+    return render_template("courses.html", career=career, course=course)
 @app.route('/admin')
 def admin():
 
