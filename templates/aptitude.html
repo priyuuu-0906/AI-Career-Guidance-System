@@ -1,46 +1,16 @@
-<h2>Aptitude Test</h2>
-
-<form action="/submit_test" method="POST">
-
-<p>1. Which language is used for AI?</p>
-
-<input type="radio" name="q1" value="a"> Python <br>
-<input type="radio" name="q1" value="b"> HTML <br>
-<input type="radio" name="q1" value="c"> CSS <br>
-
-<br>
-
-<p>2. Which subject is important for Data Science?</p>
-
-<input type="radio" name="q2" value="a"> History <br>
-<input type="radio" name="q2" value="b"> Mathematics <br>
-<input type="radio" name="q2" value="c"> Geography <br>
-
-<br>
-
-<p>3. Which field involves designing graphics?</p>
-
-<input type="radio" name="q3" value="a"> Doctor <br>
-<input type="radio" name="q3" value="b"> Lawyer <br>
-<input type="radio" name="q3" value="c"> Graphic Designer <br>
-
-<br>
-
-<p>4. Which field focuses on analysing data?</p>
-
-<input type="radio" name="q4" value="a"> Business <br>
-<input type="radio" name="q4" value="b"> Data Science <br>
-<input type="radio" name="q4" value="c"> Medicine <br>
-
-<br>
-<p>5. Which skill is important for Software Developer?</p>
-
-<input type="radio" name="q5" value="a"> Programming <br>
-<input type="radio" name="q5" value="b"> Cooking <br>
-<input type="radio" name="q5" value="c"> Singing <br>
-
-<br><br>
-
-<button type="submit">Submit Test</button>
-
-</form>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Aptitude Test</title>
+</head>
+<body>
+    <h1>Aptitude Test</h1>
+    <form action="/submit_test" method="POST">
+        {% for q in questions %}
+            <label>{{loop.index}}. {{q[1]}}</label><br>
+            <input type="text" name="q{{q[0]}}"><br><br>
+        {% endfor %}
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
