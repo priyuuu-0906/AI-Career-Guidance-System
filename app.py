@@ -68,50 +68,28 @@ def submit_test():
     if request.form['q3'] == "c":
         score += 1
 
-    if score >= 3:
-        career = "Software Developer / AI Engineer"
-    elif score == 2:
-        career = "Data Analyst"
-    else:
-        career = "Graphic Designer"
-
-    return render_template("result.html", score=score, career=career)
-
+    return render_template("result.html", score=score)
 
 @app.route('/prediction', methods=['POST'])
 def prediction():
 
     skills = request.form['skills'].lower()
 
-    if "coding" in skills or "programming" in skills:
+    if "coding" in skills:
         career = "Software Developer"
         course = "B.Tech Computer Science"
-
-    elif "maths" in skills or "statistics" in skills:
+    elif "maths" in skills:
         career = "Data Analyst"
         course = "B.Sc Data Science"
-
-    elif "design" in skills or "drawing" in skills:
+    elif "design" in skills:
         career = "Graphic Designer"
         course = "B.Des"
-
-    elif "biology" in skills or "medical" in skills:
-        career = "Doctor"
-        course = "MBBS"
-
-    elif "business" in skills or "management" in skills:
-        career = "Business Manager"
-        course = "BBA / MBA"
-
-    elif "teaching" in skills or "education" in skills:
-        career = "Teacher"
-        course = "B.Ed"
-
     else:
         career = "Career Not Found"
         course = "Explore more skills"
 
-    return render_template("courses.html", career=career, course=course)
+    return render_template("courses.html",career=career,course=course)
+
 @app.route('/admin')
 def admin():
 
