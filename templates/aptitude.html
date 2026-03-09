@@ -1,16 +1,21 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Aptitude Test</title>
-</head>
-<body>
-    <h1>Aptitude Test</h1>
-    <form action="/submit_test" method="POST">
-        {% for q in questions %}
-            <label>{{loop.index}}. {{q[1]}}</label><br>
-            <input type="text" name="q{{q[0]}}"><br><br>
-        {% endfor %}
-        <input type="submit" value="Submit">
-    </form>
-</body>
-</html>
+<form action="/submit_test" method="post">
+
+<h3>1. What do you enjoy the most?</h3>
+<input type="radio" name="q1" value="a"> Solving coding problems<br>
+<input type="radio" name="q1" value="b"> Working with numbers<br>
+<input type="radio" name="q1" value="c"> Designing graphics<br>
+
+<h3>2. Which subject do you like?</h3>
+<input type="radio" name="q2" value="a"> Computer Science<br>
+<input type="radio" name="q2" value="b"> Mathematics<br>
+<input type="radio" name="q2" value="c"> Arts<br>
+
+<h3>3. What type of work do you prefer?</h3>
+<input type="radio" name="q3" value="a"> Building software<br>
+<input type="radio" name="q3" value="b"> Analyzing data<br>
+<input type="radio" name="q3" value="c"> Creating designs<br>
+
+<br><br>
+<button type="submit">Submit Test</button>
+
+</form>
