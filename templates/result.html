@@ -1,12 +1,40 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Result</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h1>Test Result</h1>
-    <p>Your score: {{score}} / 10</p>
-    <p>Suggested Career: {{career}}</p>
-    <a href="/dashboard">Go Back to Dashboard</a>
+
+<header><h1>AI Career Guidance Project</h1></header>
+
+<main>
+<p><b>Score:</b> {{ score }}/10</p>
+
+<h3>Ability</h3>
+<ul>
+{% for a in ability %}
+<li>{{ a }}</li>
+{% endfor %}
+</ul>
+
+<h3>Weakness</h3>
+<ul>
+{% for w in weakness %}
+<li>{{ w }}</li>
+{% endfor %}
+</ul>
+
+<h3>Career</h3>
+<p>{{ career }}</p>
+
+<h3>Course</h3>
+<p>{{ course }}</p>
+
+<h3>Suggested Colleges</h3>
+<p>{{ college }}</p>
+
+<a href="/dashboard">Back</a>
+</main>
+
 </body>
 </html>
