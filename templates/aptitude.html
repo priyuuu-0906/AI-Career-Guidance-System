@@ -1,21 +1,57 @@
-<form action="/submit_test" method="post">
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<header><h1>Aptitude Test</h1></header>
+<main>
 
-<h3>1. What do you enjoy the most?</h3>
-<input type="radio" name="q1" value="a"> Solving coding problems<br>
-<input type="radio" name="q1" value="b"> Working with numbers<br>
-<input type="radio" name="q1" value="c"> Designing graphics<br>
+<form method="POST" action="/submit_test">
 
-<h3>2. Which subject do you like?</h3>
-<input type="radio" name="q2" value="a"> Computer Science<br>
-<input type="radio" name="q2" value="b"> Mathematics<br>
-<input type="radio" name="q2" value="c"> Arts<br>
+<p>Q1: Best AI language?</p>
+<input type="radio" name="q1" value="a">Python
+<input type="radio" name="q1" value="b">Java
 
-<h3>3. What type of work do you prefer?</h3>
-<input type="radio" name="q3" value="a"> Building software<br>
-<input type="radio" name="q3" value="b"> Analyzing data<br>
-<input type="radio" name="q3" value="c"> Creating designs<br>
+<p>Q2: Data tool?</p>
+<input type="radio" name="q2" value="a">Photoshop
+<input type="radio" name="q2" value="b">Excel
 
-<br><br>
-<button type="submit">Submit Test</button>
+<p>Q3: OOP means?</p>
+<input type="radio" name="q3" value="a">Yes
+<input type="radio" name="q3" value="b">No
 
+<p>Q4: ML library?</p>
+<input type="radio" name="q4" value="a">TensorFlow
+<input type="radio" name="q4" value="b">HTML
+
+<p>Q5: Database?</p>
+<input type="radio" name="q5" value="a">MySQL
+<input type="radio" name="q5" value="b">Paint
+
+<p>Q6: Problem solving?</p>
+<input type="radio" name="q6" value="a">Yes
+<input type="radio" name="q6" value="b">No
+
+<p>Q7: Team work?</p>
+<input type="radio" name="q7" value="a">Yes
+<input type="radio" name="q7" value="b">No
+
+<p>Q8: Stress handling?</p>
+<input type="radio" name="q8" value="a">Calm
+<input type="radio" name="q8" value="b">Stress
+
+<p>Q9: President of India?</p>
+<input type="radio" name="q9" value="a">Murmu
+<input type="radio" name="q9" value="b">Modi
+
+<p>Q10: Red planet?</p>
+<input type="radio" name="q10" value="a">Mars
+<input type="radio" name="q10" value="b">Earth
+
+<button type="submit">Submit</button>
 </form>
+
+</main>
+</body>
+</html>
