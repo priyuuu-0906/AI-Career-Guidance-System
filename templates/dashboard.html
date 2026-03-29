@@ -1,13 +1,12 @@
-<h1>Dashboard</h1>
-
-<a href="/aptitude">Start Aptitude Test</a>
-
-<br><br>
-
-<form action="/prediction" method="POST">
-
-<input type="text" name="skills" placeholder="Enter Skills">
-
-<button type="submit">Predict Career</button>
-
-</form>
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<header><h1>Dashboard</h1></header>
+<main>
+<a href="/aptitude">Take Test</a>
+</main>
+</body>
+</html>
