@@ -50,51 +50,67 @@ def dashboard():
 def aptitude():
     return render_template("aptitude.html")
 
+# 🔥 MAIN LOGIC (UPDATED WITH COLLEGE)
 @app.route('/submit_test', methods=['POST'])
 def submit_test():
     score = 0
-    if request.form['q1'] == "a":
-        score += 1
-    if request.form['q2'] == "b":
-        score += 1
-    if request.form['q3'] == "c":
-        score += 1
+    ability = []
+    weakness = []
 
-    if score >= 3:
-        career = "Software Developer / AI Engineer"
-    elif score == 2:
-        career = "Data Analyst"
+    correct_answers = {
+        'q1': 'a', 'q2': 'b', 'q3': 'a', 'q4': 'a', 'q5': 'a',
+        'q6': 'a', 'q7': 'a', 'q8': 'a', 'q9': 'a', 'q10': 'a'
+    }
+
+    for q, correct in correct_answers.items():
+        user_ans = request.form.get(q)
+
+        if user_ans == correct:
+            score += 1
+        else:
+            if q in ['q1','q3','q4','q5']:
+                weakness.append("Technical Skills")
+            elif q in ['q2','q9','q10']:
+                weakness.append("General Knowledge")
+            elif q in ['q6','q7','q8']:
+                weakness.append("Personal Skills")
+
+    # Ability
+    if score >= 8:
+        ability = ["Strong Technical Skills", "Good Problem Solving"]
+    elif score >= 6:
+        ability = ["Average Technical Skills"]
     else:
-        career = "Graphic Designer"
+        ability = ["Creative Thinking"]
 
-    return render_template("result.html", score=score, career=career)
+    # Career + Course + College
+    if score >= 8:
+        career = "Software Developer / AI Engineer"
+        course = "B.Tech / B.Sc Computer Science / AI & ML"
+        college = "Anna University, SSN College of Engineering, Sri Sairam Engineering College"
 
-@app.route('/prediction', methods=['POST'])
-def prediction():
-    skills = request.form['skills'].lower()
+    elif score >= 6:
+        career = "Data Analyst"
+        course = "B.Sc Data Science / Statistics"
+        college = "Loyola College, Madras Christian College"
 
-    if "business" in skills or "management" in skills:
+    elif score >= 4:
         career = "Business Manager"
         course = "BBA / MBA"
-        college = "Example: BBA is available in MGJ College, Chennai"
-    elif "coding" in skills or "programming" in skills:
-        career = "Software Developer"
-        course = "B.Tech / B.Sc Computer Science"
-        college = "Example: B.Sc CS available in Sree Muthukumaraswamy College, Chennai"
-    elif "maths" in skills:
-        career = "Data Analyst"
-        course = "B.Sc Data Science"
-        college = "Example: Data Science available in Loyola College, Chennai"
-    elif "design" in skills:
-        career = "Graphic Designer"
-        course = "B.Des"
-        college = "Example: Design courses in NIFT Chennai"
-    else:
-        career = "Career Not Found"
-        course = "Explore more"
-        college = "Check nearby colleges"
+        college = "Stella Maris College, Guru Nanak College"
 
-    return render_template("courses.html", career=career, course=course, college=college)
+    else:
+        career = "Graphic Designer"
+        course = "B.Des / Visual Communication"
+        college = "NIFT Chennai, Loyola College"
+
+    return render_template("result.html",
+                           score=score,
+                           ability=ability,
+                           weakness=weakness,
+                           career=career,
+                           course=course,
+                           college=college)
 
 @app.route('/admin')
 def admin():
