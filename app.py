@@ -1,4 +1,4 @@
- from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect
 import sqlite3
 
 app = Flask(__name__)
@@ -50,7 +50,7 @@ def dashboard():
 def aptitude():
     return render_template("aptitude.html")
 
-# 🔥 MAIN LOGIC (UPDATED WITH COLLEGE)
+# 🔥 Aptitude Logic
 @app.route('/submit_test', methods=['POST'])
 def submit_test():
     score = 0
@@ -75,7 +75,6 @@ def submit_test():
             elif q in ['q6','q7','q8']:
                 weakness.append("Personal Skills")
 
-    # Ability
     if score >= 8:
         ability = ["Strong Technical Skills", "Good Problem Solving"]
     elif score >= 6:
@@ -83,31 +82,66 @@ def submit_test():
     else:
         ability = ["Creative Thinking"]
 
-    # Career + Course + College
     if score >= 8:
         career = "Software Developer / AI Engineer"
         course = "B.Tech / B.Sc Computer Science / AI & ML"
-        college = "Anna University, SSN College of Engineering, Sri Sairam Engineering College"
+        college = "Anna University, SSN College, Sri Sairam College"
 
     elif score >= 6:
         career = "Data Analyst"
-        course = "B.Sc Data Science / Statistics"
-        college = "Loyola College, Madras Christian College"
+        course = "B.Sc Data Science"
+        college = "Loyola College, MCC"
 
     elif score >= 4:
         career = "Business Manager"
         course = "BBA / MBA"
-        college = "Stella Maris College, Guru Nanak College"
+        college = "Stella Maris College"
 
     else:
         career = "Graphic Designer"
-        course = "B.Des / Visual Communication"
-        college = "NIFT Chennai, Loyola College"
+        course = "B.Des"
+        college = "NIFT Chennai"
 
     return render_template("result.html",
                            score=score,
                            ability=ability,
                            weakness=weakness,
+                           career=career,
+                           course=course,
+                           college=college)
+
+# 🔥 NEW SKILL FEATURE (ADDED ONLY)
+@app.route('/prediction', methods=['POST'])
+def prediction():
+
+    skills = request.form.getlist('skills')
+
+    if "coding" in skills or "programming" in skills:
+        career = "Software Developer"
+        course = "B.Tech / B.Sc CS"
+        college = "Anna University"
+
+    elif "data" in skills or "math" in skills:
+        career = "Data Analyst"
+        course = "B.Sc Data Science"
+        college = "Loyola College"
+
+    elif "business" in skills or "management" in skills:
+        career = "Business Manager"
+        course = "BBA / MBA"
+        college = "Stella Maris College"
+
+    elif "design" in skills or "creative" in skills:
+        career = "Graphic Designer"
+        course = "B.Des"
+        college = "NIFT Chennai"
+
+    else:
+        career = "Not Found"
+        course = "Explore"
+        college = "Search colleges"
+
+    return render_template("courses.html",
                            career=career,
                            course=course,
                            college=college)
