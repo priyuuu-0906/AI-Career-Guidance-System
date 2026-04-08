@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect
+ from flask import Flask, render_template, request, redirect
 import sqlite3
 
 app = Flask(__name__)
@@ -111,40 +111,7 @@ def submit_test():
                            career=career,
                            course=course,
                            college=college)
-    @app.route('/prediction', methods=['POST'])
-def prediction():
 
-    skills = request.form.getlist('skills')
-
-    if "coding" in skills or "programming" in skills:
-        career = "Software Developer"
-        course = "B.Tech / B.Sc CS"
-        college = "Anna University"
-
-    elif "data" in skills or "math" in skills:
-        career = "Data Analyst"
-        course = "B.Sc Data Science"
-        college = "Loyola College"
-
-    elif "business" in skills or "management" in skills:
-        career = "Business Manager"
-        course = "BBA / MBA"
-        college = "Stella Maris College"
-
-    elif "design" in skills or "creative" in skills:
-        career = "Graphic Designer"
-        course = "B.Des"
-        college = "NIFT Chennai"
-
-    else:
-        career = "Not Found"
-        course = "Explore"
-        college = "Search colleges"
-
-    return render_template("courses.html",
-                           career=career,
-                           course=course,
-                           college=college)
 @app.route('/admin')
 def admin():
     conn = sqlite3.connect("users.db")
@@ -156,4 +123,3 @@ def admin():
 
 if __name__ == "__main__":
     app.run(debug=True)
-
