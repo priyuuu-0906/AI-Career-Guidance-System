@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Prediction Result</h2>
+
+<p>Career: {{ career }}</p>
+<p>Course: {{ course }}</p>
+<p>College: {{ college }}</p>
+
+<a href="/">Back</a>
+
+</body>
+</html>
